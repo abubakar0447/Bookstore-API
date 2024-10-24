@@ -162,4 +162,5 @@ This project demonstrates modern web development practices using ASP.NET Core an
 
 Feel free to reach out if you have any questions or suggestions!
 
+*Email*: [abubakarsabir47@gmail.com](abubakarsabir47@gmail.com)
 ---
