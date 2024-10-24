@@ -1,0 +1,133 @@
+2024-10-15 12:14:21.860 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-15 12:14:26.101 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-15 12:14:27.214 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-15 12:14:27.280 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-15 12:14:36.058 +05:00 [INF] Executed DbCommand (573ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-15 12:14:37.398 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-15 12:14:40.260 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-15 12:14:40.288 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-15 12:14:40.295 +05:00 [INF] Hosting environment: Development
+2024-10-15 12:14:40.300 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-15 12:19:23.785 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/ - null null
+2024-10-15 12:19:24.375 +05:00 [INF] Incoming Request: GET /
+2024-10-15 12:19:32.061 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-15 12:19:32.068 +05:00 [INF] Outgoing Response: 404
+2024-10-15 12:19:32.101 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/ - 404 0 null 8325.5601ms
+2024-10-15 12:19:32.554 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5296/, Response status code: 404
+2024-10-15 12:19:35.086 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-15 12:19:35.587 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 500.6011ms
+2024-10-15 12:19:37.231 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-15 12:19:38.066 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 834.6921ms
+2024-10-15 12:20:11.190 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Reporting/top-authors - null null
+2024-10-15 12:20:11.392 +05:00 [INF] Incoming Request: GET /api/Reporting/top-authors
+2024-10-15 12:20:11.546 +05:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-10-15 12:20:11.852 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-10-15 12:20:11.858 +05:00 [INF] Outgoing Response: 401
+2024-10-15 12:20:11.870 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Reporting/top-authors - 401 0 null 680.0846ms
+2024-10-15 12:20:56.848 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Customer/login - application/json-patch+json 59
+2024-10-15 12:20:57.168 +05:00 [INF] Incoming Request: POST /api/Customer/login
+2024-10-15 12:20:57.307 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-15 12:20:57.487 +05:00 [INF] Route matched with {action = "Login", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookstoreAPI.Models.DTOs.LoginDTO) on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-15 12:20:59.872 +05:00 [INF] Executed DbCommand (60ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-10-15 12:21:03.046 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-10-15 12:21:03.358 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-15 12:21:03.424 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-15 12:21:03.616 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2024-10-15 12:21:03.993 +05:00 [INF] Executed DbCommand (41ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-15 12:21:04.086 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2024-10-15 12:21:04.260 +05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-10-15 12:21:04.313 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-15 12:21:04.779 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) executed in 5820ms
+2024-10-15 12:21:04.831 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-15 12:21:05.183 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) in 7195.7526ms
+2024-10-15 12:21:05.729 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-15 12:21:05.754 +05:00 [INF] Outgoing Response: 200
+2024-10-15 12:21:05.983 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Customer/login - 200 557 application/json; charset=utf-8 9135.4419ms
+2024-10-15 12:21:35.253 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Reporting/top-authors - null null
+2024-10-15 12:21:35.463 +05:00 [INF] Incoming Request: GET /api/Reporting/top-authors
+2024-10-15 12:21:35.758 +05:00 [INF] Executing endpoint 'ReportingController.GetTopAuthors (BookstoreAPI)'
+2024-10-15 12:21:35.849 +05:00 [INF] Route matched with {action = "GetTopAuthors", controller = "Reporting"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTopAuthors() on controller ReportingController (BookstoreAPI).
+2024-10-15 12:21:36.462 +05:00 [INF] Executed DbCommand (73ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[Id], [o].[CancellationReason], [o].[CustomerId], [o].[CustomerId1], [o].[OrderDate], [o].[ReturnReason], [o].[Status], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [t].[OrderId], [t].[BookId], [t].[Quantity], [t].[UnitPrice], [t].[Id], [t].[AuthorId], [t].[ISBN], [t].[Price], [t].[StockQuantity], [t].[Title], [t].[Id0], [t].[Bio], [t].[Name]
+FROM [Orders] AS [o]
+INNER JOIN [AspNetUsers] AS [a] ON [o].[CustomerId] = [a].[Id]
+LEFT JOIN (
+    SELECT [o0].[OrderId], [o0].[BookId], [o0].[Quantity], [o0].[UnitPrice], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a0].[Id] AS [Id0], [a0].[Bio], [a0].[Name]
+    FROM [OrderDetails] AS [o0]
+    INNER JOIN [Books] AS [b] ON [o0].[BookId] = [b].[Id]
+    INNER JOIN [Authors] AS [a0] ON [b].[AuthorId] = [a0].[Id]
+) AS [t] ON [o].[Id] = [t].[OrderId]
+ORDER BY [o].[Id], [a].[Id], [t].[OrderId], [t].[BookId], [t].[Id]
+2024-10-15 12:21:36.629 +05:00 [INF] Action ReportingController.GetTopAuthors (BookstoreAPI) executed in 760ms
+2024-10-15 12:21:36.638 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.TopAuthorsReportDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-15 12:21:36.694 +05:00 [INF] Executed action ReportingController.GetTopAuthors (BookstoreAPI) in 829.9882ms
+2024-10-15 12:21:36.737 +05:00 [INF] Executed endpoint 'ReportingController.GetTopAuthors (BookstoreAPI)'
+2024-10-15 12:21:36.780 +05:00 [INF] Outgoing Response: 200
+2024-10-15 12:21:36.795 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Reporting/top-authors - 200 146 application/json; charset=utf-8 1541.9142ms
+2024-10-15 12:37:35.524 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Reporting/top-customers - null null
+2024-10-15 12:37:35.684 +05:00 [INF] Incoming Request: GET /api/Reporting/top-customers
+2024-10-15 12:37:35.861 +05:00 [INF] Executing endpoint 'ReportingController.GetTopCustomers (BookstoreAPI)'
+2024-10-15 12:37:35.902 +05:00 [INF] Route matched with {action = "GetTopCustomers", controller = "Reporting"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTopCustomers() on controller ReportingController (BookstoreAPI).
+2024-10-15 12:37:36.399 +05:00 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[Id], [o].[CancellationReason], [o].[CustomerId], [o].[CustomerId1], [o].[OrderDate], [o].[ReturnReason], [o].[Status], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [t].[OrderId], [t].[BookId], [t].[Quantity], [t].[UnitPrice], [t].[Id], [t].[AuthorId], [t].[ISBN], [t].[Price], [t].[StockQuantity], [t].[Title]
+FROM [Orders] AS [o]
+INNER JOIN [AspNetUsers] AS [a] ON [o].[CustomerId] = [a].[Id]
+LEFT JOIN (
+    SELECT [o0].[OrderId], [o0].[BookId], [o0].[Quantity], [o0].[UnitPrice], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+    FROM [OrderDetails] AS [o0]
+    INNER JOIN [Books] AS [b] ON [o0].[BookId] = [b].[Id]
+) AS [t] ON [o].[Id] = [t].[OrderId]
+ORDER BY [o].[Id], [a].[Id], [t].[OrderId], [t].[BookId]
+2024-10-15 12:37:36.509 +05:00 [INF] Action ReportingController.GetTopCustomers (BookstoreAPI) executed in 578ms
+2024-10-15 12:37:36.518 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.UserActivityReportDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-15 12:37:36.613 +05:00 [INF] Executed action ReportingController.GetTopCustomers (BookstoreAPI) in 687.054ms
+2024-10-15 12:37:36.639 +05:00 [INF] Executed endpoint 'ReportingController.GetTopCustomers (BookstoreAPI)'
+2024-10-15 12:37:36.684 +05:00 [INF] Outgoing Response: 200
+2024-10-15 12:37:36.699 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Reporting/top-customers - 200 117 application/json; charset=utf-8 1174.8925ms
+2024-10-15 12:37:53.417 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Reporting/low-stock?threshold=20 - null null
+2024-10-15 12:37:53.430 +05:00 [INF] Incoming Request: GET /api/Reporting/low-stock
+2024-10-15 12:37:53.466 +05:00 [INF] Executing endpoint 'ReportingController.GetLowStockBooks (BookstoreAPI)'
+2024-10-15 12:37:53.515 +05:00 [INF] Route matched with {action = "GetLowStockBooks", controller = "Reporting"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetLowStockBooks(Int32) on controller ReportingController (BookstoreAPI).
+2024-10-15 12:37:53.682 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[Bio], [a].[Name]
+FROM [Books] AS [b]
+INNER JOIN [Authors] AS [a] ON [b].[AuthorId] = [a].[Id]
+2024-10-15 12:37:53.713 +05:00 [INF] Action ReportingController.GetLowStockBooks (BookstoreAPI) executed in 109ms
+2024-10-15 12:37:53.749 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.InventoryReportDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-15 12:37:53.782 +05:00 [INF] Executed action ReportingController.GetLowStockBooks (BookstoreAPI) in 228.0207ms
+2024-10-15 12:37:53.802 +05:00 [INF] Executed endpoint 'ReportingController.GetLowStockBooks (BookstoreAPI)'
+2024-10-15 12:37:53.808 +05:00 [INF] Outgoing Response: 200
+2024-10-15 12:37:53.814 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Reporting/low-stock?threshold=20 - 200 79 application/json; charset=utf-8 396.5785ms

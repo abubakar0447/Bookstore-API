@@ -1,0 +1,53 @@
+2024-10-07 00:11:06.234 +05:00 [INF] Application is shutting down...
+2024-10-07 00:11:15.080 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-07 00:11:15.731 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-07 00:11:15.771 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-07 00:11:15.774 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-07 00:11:16.531 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-07 00:11:16.637 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-07 00:11:16.794 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-07 00:11:16.797 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-07 00:11:16.799 +05:00 [INF] Hosting environment: Development
+2024-10-07 00:11:16.800 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-07 00:11:32.333 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Customer/profile - null null
+2024-10-07 00:11:32.391 +05:00 [INF] Incoming Request: GET /api/Customer/profile
+2024-10-07 00:11:32.476 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-07 00:11:32.481 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI)'
+2024-10-07 00:11:32.503 +05:00 [INF] Route matched with {action = "GetProfile", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProfile() on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-07 00:11:32.643 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-10-07 00:11:32.730 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI) executed in 219ms
+2024-10-07 00:11:32.736 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-07 00:11:32.857 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI) in 347.6336ms
+2024-10-07 00:11:32.865 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI)'
+2024-10-07 00:11:32.869 +05:00 [INF] Outgoing Response: 200
+2024-10-07 00:11:32.885 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Customer/profile - 200 66 application/json; charset=utf-8 556.6966ms
+2024-10-07 00:11:39.496 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Reporting/top-authors - null null
+2024-10-07 00:11:39.504 +05:00 [INF] Incoming Request: GET /api/Reporting/top-authors
+2024-10-07 00:11:39.515 +05:00 [INF] Executing endpoint 'ReportingController.GetTopAuthors (BookstoreAPI)'
+2024-10-07 00:11:39.525 +05:00 [INF] Route matched with {action = "GetTopAuthors", controller = "Reporting"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTopAuthors() on controller ReportingController (BookstoreAPI).
+2024-10-07 00:11:39.677 +05:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[Id], [o].[CancellationReason], [o].[CustomerId], [o].[CustomerId1], [o].[OrderDate], [o].[ReturnReason], [o].[Status], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [t].[OrderId], [t].[BookId], [t].[Quantity], [t].[UnitPrice], [t].[Id], [t].[AuthorId], [t].[ISBN], [t].[Price], [t].[StockQuantity], [t].[Title], [t].[Id0], [t].[Bio], [t].[Name]
+FROM [Orders] AS [o]
+INNER JOIN [AspNetUsers] AS [a] ON [o].[CustomerId] = [a].[Id]
+LEFT JOIN (
+    SELECT [o0].[OrderId], [o0].[BookId], [o0].[Quantity], [o0].[UnitPrice], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a0].[Id] AS [Id0], [a0].[Bio], [a0].[Name]
+    FROM [OrderDetails] AS [o0]
+    INNER JOIN [Books] AS [b] ON [o0].[BookId] = [b].[Id]
+    INNER JOIN [Authors] AS [a0] ON [b].[AuthorId] = [a0].[Id]
+) AS [t] ON [o].[Id] = [t].[OrderId]
+ORDER BY [o].[Id], [a].[Id], [t].[OrderId], [t].[BookId], [t].[Id]
+2024-10-07 00:11:39.702 +05:00 [INF] Action ReportingController.GetTopAuthors (BookstoreAPI) executed in 171ms
+2024-10-07 00:11:39.706 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.TopAuthorsReportDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-07 00:11:39.717 +05:00 [INF] Executed action ReportingController.GetTopAuthors (BookstoreAPI) in 188.6232ms
+2024-10-07 00:11:39.721 +05:00 [INF] Executed endpoint 'ReportingController.GetTopAuthors (BookstoreAPI)'
+2024-10-07 00:11:39.725 +05:00 [INF] Outgoing Response: 200
+2024-10-07 00:11:39.728 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Reporting/top-authors - 200 146 application/json; charset=utf-8 232.0183ms

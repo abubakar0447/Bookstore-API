@@ -1,0 +1,27 @@
+2024-10-24 11:00:05.364 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-24 11:00:08.498 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-24 11:00:08.565 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-24 11:00:08.568 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-24 11:00:11.152 +05:00 [INF] Executed DbCommand (177ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-24 11:00:11.311 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-24 11:00:12.021 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-24 11:00:12.025 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-24 11:00:12.027 +05:00 [INF] Hosting environment: Development
+2024-10-24 11:00:12.028 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-24 11:00:30.669 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/ - null null
+2024-10-24 11:00:30.778 +05:00 [INF] Incoming Request: GET /
+2024-10-24 11:00:32.078 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-24 11:00:32.080 +05:00 [INF] Outgoing Response: 404
+2024-10-24 11:00:32.088 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/ - 404 0 null 1422.2304ms
+2024-10-24 11:00:32.103 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5296/, Response status code: 404
+2024-10-24 11:00:36.164 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-24 11:00:36.307 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 143.5268ms
+2024-10-24 11:00:36.565 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-24 11:00:36.687 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 121.8273ms
+2024-10-24 11:50:59.261 +05:00 [INF] Application is shutting down...

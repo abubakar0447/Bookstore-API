@@ -1,0 +1,855 @@
+2024-10-01 18:57:20.627 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 18:57:20.715 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 18:57:20.718 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 18:57:20.934 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 18:57:20.941 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 18:57:20.944 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 18:57:41.283 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 18:57:41.377 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 18:57:41.379 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 18:57:42.516 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-01 18:57:42.551 +05:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-01 18:57:42.556 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-01 18:57:42.561 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-01 18:57:42.606 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-10-01 18:57:42.631 +05:00 [INF] Applying migration '20241001135724_UpdatrReviewModel'.
+2024-10-01 18:57:42.819 +05:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Reviews] DROP CONSTRAINT [FK_Reviews_Customers_CustomerId];
+2024-10-01 18:57:42.887 +05:00 [INF] Executed DbCommand (64ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX [IX_Reviews_CustomerId] ON [Reviews];
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Reviews]') AND [c].[name] = N'CustomerId');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Reviews] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Reviews] ALTER COLUMN [CustomerId] nvarchar(450) NOT NULL;
+CREATE INDEX [IX_Reviews_CustomerId] ON [Reviews] ([CustomerId]);
+2024-10-01 18:57:42.903 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Reviews] ADD [CreatedAt] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2024-10-01 18:57:42.908 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Reviews] ADD [UpdatedAt] datetime2 NOT NULL DEFAULT '0001-01-01T00:00:00.0000000';
+2024-10-01 18:57:42.919 +05:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [Reviews] ADD CONSTRAINT [FK_Reviews_AspNetUsers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE;
+2024-10-01 18:57:42.923 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20241001135724_UpdatrReviewModel', N'8.0.8');
+2024-10-01 19:05:06.165 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 19:05:07.063 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 19:05:07.112 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 19:05:07.117 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 19:05:08.134 +05:00 [INF] Executed DbCommand (127ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 19:05:08.236 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 19:05:08.797 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 19:05:08.800 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 19:05:08.801 +05:00 [INF] Hosting environment: Development
+2024-10-01 19:05:08.802 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 19:08:10.474 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/ - null null
+2024-10-01 19:08:10.917 +05:00 [INF] Incoming Request: GET /
+2024-10-01 19:08:12.570 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-01 19:08:12.573 +05:00 [INF] Outgoing Response: 404
+2024-10-01 19:08:12.580 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/ - 404 0 null 2119.3182ms
+2024-10-01 19:08:12.598 +05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5296/, Response status code: 404
+2024-10-01 19:08:16.002 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 19:08:16.134 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 132.9444ms
+2024-10-01 19:08:16.253 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 19:08:16.383 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 130.0761ms
+2024-10-01 19:08:59.767 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Books - null null
+2024-10-01 19:08:59.774 +05:00 [INF] Incoming Request: GET /api/Books
+2024-10-01 19:08:59.800 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.BooksController.GetBooks (BookstoreAPI)'
+2024-10-01 19:08:59.843 +05:00 [INF] Route matched with {action = "GetBooks", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[BookstoreAPI.Models.DTOs.BookReadDTO]]] GetBooks() on controller BookstoreAPI.Controllers.BooksController (BookstoreAPI).
+2024-10-01 19:09:00.293 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[Bio], [a].[Name]
+FROM [Books] AS [b]
+INNER JOIN [Authors] AS [a] ON [b].[AuthorId] = [a].[Id]
+2024-10-01 19:09:00.385 +05:00 [INF] Action BookstoreAPI.Controllers.BooksController.GetBooks (BookstoreAPI) executed in 533ms
+2024-10-01 19:09:00.391 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.BookReadDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 19:09:00.491 +05:00 [INF] Executed action BookstoreAPI.Controllers.BooksController.GetBooks (BookstoreAPI) in 640.355ms
+2024-10-01 19:09:00.494 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.BooksController.GetBooks (BookstoreAPI)'
+2024-10-01 19:09:00.505 +05:00 [INF] Outgoing Response: 200
+2024-10-01 19:09:00.510 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Books - 200 588 application/json; charset=utf-8 742.9732ms
+2024-10-01 19:09:49.600 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Review - application/json-patch+json 73
+2024-10-01 19:09:49.606 +05:00 [INF] Incoming Request: POST /api/Review
+2024-10-01 19:09:49.661 +05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-10-01 19:09:49.666 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-10-01 19:09:49.668 +05:00 [INF] Outgoing Response: 401
+2024-10-01 19:09:49.670 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Review - 401 0 null 69.5252ms
+2024-10-01 19:10:32.439 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Review - application/json-patch+json 73
+2024-10-01 19:10:32.443 +05:00 [INF] Incoming Request: POST /api/Review
+2024-10-01 19:10:32.814 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '9/30/2024 1:52:01 PM', Current time (UTC): '10/1/2024 2:10:32 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2024-10-01 19:10:32.828 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '9/30/2024 1:52:01 PM', Current time (UTC): '10/1/2024 2:10:32 PM'.
+2024-10-01 19:10:32.832 +05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-10-01 19:10:32.836 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-10-01 19:10:32.837 +05:00 [INF] Outgoing Response: 401
+2024-10-01 19:10:32.839 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Review - 401 0 null 399.4213ms
+2024-10-01 19:11:06.915 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Customer/login - application/json-patch+json 72
+2024-10-01 19:11:06.919 +05:00 [INF] Incoming Request: POST /api/Customer/login
+2024-10-01 19:11:06.922 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '9/30/2024 1:52:01 PM', Current time (UTC): '10/1/2024 2:11:06 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2024-10-01 19:11:06.927 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '9/30/2024 1:52:01 PM', Current time (UTC): '10/1/2024 2:11:06 PM'.
+2024-10-01 19:11:06.929 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-01 19:11:06.943 +05:00 [INF] Route matched with {action = "Login", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookstoreAPI.Models.DTOs.LoginDTO) on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-01 19:11:07.334 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-10-01 19:11:07.541 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-10-01 19:11:07.562 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-01 19:11:07.580 +05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-10-01 19:11:07.588 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-01 19:11:07.612 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) executed in 330ms
+2024-10-01 19:11:07.614 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 19:11:07.622 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) in 673.9398ms
+2024-10-01 19:11:07.624 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-01 19:11:07.626 +05:00 [INF] Outgoing Response: 200
+2024-10-01 19:11:07.627 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Customer/login - 200 445 application/json; charset=utf-8 712.7853ms
+2024-10-01 19:11:37.301 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Review - application/json-patch+json 73
+2024-10-01 19:11:37.306 +05:00 [INF] Incoming Request: POST /api/Review
+2024-10-01 19:11:37.607 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI)'
+2024-10-01 19:11:37.620 +05:00 [INF] Route matched with {action = "AddReview", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddReview(BookstoreAPI.Models.DTOs.ReviewCreateDTO) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:11:37.627 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI) in 2.4056ms
+2024-10-01 19:11:37.639 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI)'
+2024-10-01 19:11:37.643 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'IReviewService' while attempting to activate 'BookstoreAPI.Controllers.ReviewController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method289(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at BookstoreAPI.Middleware.RequestResponseLoggingMiddleware.InvokeAsync(HttpContext context) in E:\House of Technology Office\Bookstore API project learning\BookstoreAPI\Middleware\RequestResponseLoggingMiddleware.cs:line 22
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-10-01 19:11:37.695 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Review - 500 null text/plain; charset=utf-8 393.6219ms
+2024-10-01 19:12:31.039 +05:00 [INF] Application is shutting down...
+2024-10-01 19:18:09.388 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 19:18:10.014 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 19:18:10.073 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 19:18:10.083 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 19:18:10.868 +05:00 [INF] Executed DbCommand (35ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 19:18:10.957 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 19:18:11.091 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 19:18:11.094 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 19:18:11.097 +05:00 [INF] Hosting environment: Development
+2024-10-01 19:18:11.098 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 19:18:19.206 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 19:18:19.320 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 115.8996ms
+2024-10-01 19:18:19.552 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 19:18:19.689 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 137.5214ms
+2024-10-01 19:18:55.291 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Review - application/json-patch+json 73
+2024-10-01 19:18:55.581 +05:00 [INF] Incoming Request: POST /api/Review
+2024-10-01 19:18:55.663 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-01 19:18:55.666 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI)'
+2024-10-01 19:18:55.688 +05:00 [INF] Route matched with {action = "AddReview", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddReview(BookstoreAPI.Models.DTOs.ReviewCreateDTO) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:18:55.698 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI) in 2.1885ms
+2024-10-01 19:18:55.702 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI)'
+2024-10-01 19:18:55.706 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'BookstoreAPI.Services.Interfaces.IReviewService' while attempting to activate 'BookstoreAPI.Controllers.ReviewController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method60(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at BookstoreAPI.Middleware.RequestResponseLoggingMiddleware.InvokeAsync(HttpContext context) in E:\House of Technology Office\Bookstore API project learning\BookstoreAPI\Middleware\RequestResponseLoggingMiddleware.cs:line 22
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-10-01 19:18:55.753 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Review - 500 null text/plain; charset=utf-8 461.6444ms
+2024-10-01 19:24:16.730 +05:00 [INF] Application is shutting down...
+2024-10-01 19:24:23.279 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 19:24:24.051 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 19:24:24.099 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 19:24:24.102 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 19:24:24.909 +05:00 [INF] Executed DbCommand (43ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 19:24:25.010 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 19:24:25.188 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 19:24:25.192 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 19:24:25.193 +05:00 [INF] Hosting environment: Development
+2024-10-01 19:24:25.196 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 19:24:32.566 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 19:24:32.688 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 122.9417ms
+2024-10-01 19:24:32.915 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 19:24:33.042 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 127.5103ms
+2024-10-01 19:25:16.597 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Review - application/json-patch+json 73
+2024-10-01 19:25:16.610 +05:00 [INF] Incoming Request: POST /api/Review
+2024-10-01 19:25:16.710 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-01 19:25:16.712 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI)'
+2024-10-01 19:25:16.733 +05:00 [INF] Route matched with {action = "AddReview", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddReview(BookstoreAPI.Models.DTOs.ReviewCreateDTO) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:25:17.308 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[Bio], [a].[Name]
+FROM [Books] AS [b]
+INNER JOIN [Authors] AS [a] ON [b].[AuthorId] = [a].[Id]
+WHERE [b].[Id] = @__id_0
+2024-10-01 19:25:17.593 +05:00 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 450), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Reviews] ([BookId], [CreatedAt], [CustomerId], [Rating], [ReviewText], [UpdatedAt])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-10-01 19:25:17.632 +05:00 [INF] Action BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI) executed in 479ms
+2024-10-01 19:25:17.641 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 19:25:17.681 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI) in 936.8966ms
+2024-10-01 19:25:17.684 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.AddReview (BookstoreAPI)'
+2024-10-01 19:25:17.690 +05:00 [INF] Outgoing Response: 200
+2024-10-01 19:25:17.696 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Review - 200 39 application/json; charset=utf-8 1099.2137ms
+2024-10-01 19:25:52.340 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Review/book/1 - null null
+2024-10-01 19:25:52.345 +05:00 [INF] Incoming Request: GET /api/Review/book/1
+2024-10-01 19:25:52.352 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI)'
+2024-10-01 19:25:52.365 +05:00 [INF] Route matched with {action = "GetReviewsByBookId", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetReviewsByBookId(Int32) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:25:52.436 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__bookId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[BookId], [r].[CreatedAt], [r].[CustomerId], [r].[Rating], [r].[ReviewText], [r].[UpdatedAt], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Reviews] AS [r]
+INNER JOIN [Books] AS [b] ON [r].[BookId] = [b].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [r].[CustomerId] = [a].[Id]
+WHERE [r].[BookId] = @__bookId_0
+2024-10-01 19:25:52.492 +05:00 [INF] Action BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI) executed in 119ms
+2024-10-01 19:25:52.495 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.ReviewDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 19:25:52.507 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI) in 139.6242ms
+2024-10-01 19:25:52.513 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI)'
+2024-10-01 19:25:52.515 +05:00 [INF] Outgoing Response: 200
+2024-10-01 19:25:52.517 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Review/book/1 - 200 264 application/json; charset=utf-8 176.5979ms
+2024-10-01 19:27:23.546 +05:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5296/api/Review/1 - application/json-patch+json 76
+2024-10-01 19:27:23.549 +05:00 [INF] Incoming Request: PUT /api/Review/1
+2024-10-01 19:27:23.556 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI)'
+2024-10-01 19:27:23.564 +05:00 [INF] Route matched with {action = "UpdateReview", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateReview(Int32, BookstoreAPI.Models.DTOs.ReviewCreateDTO) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:27:23.609 +05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2024-10-01 19:27:23.635 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI) in 66.7638ms
+2024-10-01 19:27:23.639 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI)'
+2024-10-01 19:27:23.641 +05:00 [INF] Outgoing Response: 400
+2024-10-01 19:27:23.642 +05:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5296/api/Review/1 - 400 356 application/problem+json; charset=utf-8 96.2502ms
+2024-10-01 19:27:41.485 +05:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5296/api/Review/1 - application/json-patch+json 74
+2024-10-01 19:27:41.490 +05:00 [INF] Incoming Request: PUT /api/Review/1
+2024-10-01 19:27:41.492 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI)'
+2024-10-01 19:27:41.496 +05:00 [INF] Route matched with {action = "UpdateReview", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateReview(Int32, BookstoreAPI.Models.DTOs.ReviewCreateDTO) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:27:41.527 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[@__reviewId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[BookId], [r].[CreatedAt], [r].[CustomerId], [r].[Rating], [r].[ReviewText], [r].[UpdatedAt], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Reviews] AS [r]
+INNER JOIN [Books] AS [b] ON [r].[BookId] = [b].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [r].[CustomerId] = [a].[Id]
+WHERE [r].[Id] = @__reviewId_0
+2024-10-01 19:27:41.573 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@p6='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 450), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Reviews] SET [BookId] = @p0, [CreatedAt] = @p1, [CustomerId] = @p2, [Rating] = @p3, [ReviewText] = @p4, [UpdatedAt] = @p5
+OUTPUT 1
+WHERE [Id] = @p6;
+2024-10-01 19:27:41.578 +05:00 [INF] Action BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI) executed in 76ms
+2024-10-01 19:27:41.579 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 19:27:41.581 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI) in 81.6345ms
+2024-10-01 19:27:41.583 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.UpdateReview (BookstoreAPI)'
+2024-10-01 19:27:41.586 +05:00 [INF] Outgoing Response: 200
+2024-10-01 19:27:41.588 +05:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5296/api/Review/1 - 200 41 application/json; charset=utf-8 102.7604ms
+2024-10-01 19:27:54.346 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Review/book/1 - null null
+2024-10-01 19:27:54.349 +05:00 [INF] Incoming Request: GET /api/Review/book/1
+2024-10-01 19:27:54.351 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI)'
+2024-10-01 19:27:54.381 +05:00 [INF] Route matched with {action = "GetReviewsByBookId", controller = "Review"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetReviewsByBookId(Int32) on controller BookstoreAPI.Controllers.ReviewController (BookstoreAPI).
+2024-10-01 19:27:54.389 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__bookId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[BookId], [r].[CreatedAt], [r].[CustomerId], [r].[Rating], [r].[ReviewText], [r].[UpdatedAt], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Reviews] AS [r]
+INNER JOIN [Books] AS [b] ON [r].[BookId] = [b].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [r].[CustomerId] = [a].[Id]
+WHERE [r].[BookId] = @__bookId_0
+2024-10-01 19:27:54.395 +05:00 [INF] Action BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI) executed in 11ms
+2024-10-01 19:27:54.396 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.ReviewDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 19:27:54.398 +05:00 [INF] Executed action BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI) in 14.0386ms
+2024-10-01 19:27:54.401 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.ReviewController.GetReviewsByBookId (BookstoreAPI)'
+2024-10-01 19:27:54.407 +05:00 [INF] Outgoing Response: 200
+2024-10-01 19:27:54.412 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Review/book/1 - 200 266 application/json; charset=utf-8 64.8637ms
+2024-10-01 19:28:10.124 +05:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5296/api/Review/1 - null null
+2024-10-01 19:28:10.149 +05:00 [INF] Incoming Request: DELETE /api/Review/1
+2024-10-01 19:28:10.161 +05:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-10-01 19:28:10.165 +05:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2024-10-01 19:28:10.168 +05:00 [INF] Outgoing Response: 403
+2024-10-01 19:28:10.173 +05:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5296/api/Review/1 - 403 0 null 49.4606ms
+2024-10-01 20:40:22.143 +05:00 [INF] Application is shutting down...
+2024-10-01 20:40:30.883 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 20:40:31.658 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 20:40:31.702 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 20:40:31.707 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 20:40:32.473 +05:00 [INF] Executed DbCommand (42ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 20:40:32.570 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 20:40:32.718 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 20:40:32.721 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 20:40:32.722 +05:00 [INF] Hosting environment: Development
+2024-10-01 20:40:32.723 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 20:40:36.009 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 20:40:36.119 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 111.2631ms
+2024-10-01 20:40:36.344 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 20:40:36.442 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Order" for actions - BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI),BookstoreAPI.Controllers.OrderController.GetOrders (BookstoreAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-10-01 20:40:36.462 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 118.1178ms
+2024-10-01 20:40:43.155 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 20:40:43.179 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 24.3741ms
+2024-10-01 20:40:43.347 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 20:40:43.381 +05:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Order" for actions - BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI),BookstoreAPI.Controllers.OrderController.GetOrders (BookstoreAPI). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-10-01 20:40:43.386 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 500 null text/plain; charset=utf-8 39.0148ms
+2024-10-01 20:42:50.199 +05:00 [INF] Application is shutting down...
+2024-10-01 20:42:55.520 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 20:42:56.321 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 20:42:56.384 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 20:42:56.388 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 20:42:57.167 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 20:42:57.261 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 20:42:57.438 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 20:42:57.441 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 20:42:57.443 +05:00 [INF] Hosting environment: Development
+2024-10-01 20:42:57.444 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 20:43:01.534 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 20:43:01.734 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 200.9853ms
+2024-10-01 20:43:01.824 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 20:43:01.955 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 130.5952ms
+2024-10-01 20:43:17.569 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Order/GetAllOrders - null null
+2024-10-01 20:43:17.581 +05:00 [INF] Incoming Request: GET /api/Order/GetAllOrders
+2024-10-01 20:43:17.632 +05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-10-01 20:43:17.637 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-10-01 20:43:17.639 +05:00 [INF] Outgoing Response: 401
+2024-10-01 20:43:17.640 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Order/GetAllOrders - 401 0 null 71.0401ms
+2024-10-01 20:44:04.624 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Customer/login - application/json-patch+json 59
+2024-10-01 20:44:04.633 +05:00 [INF] Incoming Request: POST /api/Customer/login
+2024-10-01 20:44:04.642 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-01 20:44:04.649 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-01 20:44:04.698 +05:00 [INF] Route matched with {action = "Login", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookstoreAPI.Models.DTOs.LoginDTO) on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-01 20:44:04.972 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-10-01 20:44:05.252 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-10-01 20:44:05.288 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-01 20:44:05.297 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 20:44:05.312 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2024-10-01 20:44:05.317 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 20:44:05.322 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2024-10-01 20:44:05.339 +05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-10-01 20:44:05.349 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-01 20:44:05.382 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) executed in 529ms
+2024-10-01 20:44:05.386 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 20:44:05.436 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) in 731.9487ms
+2024-10-01 20:44:05.439 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-01 20:44:05.443 +05:00 [INF] Outgoing Response: 200
+2024-10-01 20:44:05.453 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Customer/login - 200 557 application/json; charset=utf-8 828.5843ms
+2024-10-01 20:44:33.766 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Order/GetAllOrders - null null
+2024-10-01 20:44:33.769 +05:00 [INF] Incoming Request: GET /api/Order/GetAllOrders
+2024-10-01 20:44:33.832 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI)'
+2024-10-01 20:44:33.838 +05:00 [INF] Route matched with {action = "GetAllOrders", controller = "Order"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllOrders() on controller BookstoreAPI.Controllers.OrderController (BookstoreAPI).
+2024-10-01 20:44:34.000 +05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[Id], [o].[CancellationReason], [o].[CustomerId], [o].[CustomerId1], [o].[OrderDate], [o].[ReturnReason], [o].[Status], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [t].[OrderId], [t].[BookId], [t].[Quantity], [t].[UnitPrice], [t].[Id], [t].[AuthorId], [t].[ISBN], [t].[Price], [t].[StockQuantity], [t].[Title]
+FROM [Orders] AS [o]
+INNER JOIN [AspNetUsers] AS [a] ON [o].[CustomerId] = [a].[Id]
+LEFT JOIN (
+    SELECT [o0].[OrderId], [o0].[BookId], [o0].[Quantity], [o0].[UnitPrice], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+    FROM [OrderDetails] AS [o0]
+    INNER JOIN [Books] AS [b] ON [o0].[BookId] = [b].[Id]
+) AS [t] ON [o].[Id] = [t].[OrderId]
+ORDER BY [o].[Id], [a].[Id], [t].[OrderId], [t].[BookId]
+2024-10-01 20:44:34.097 +05:00 [INF] Action BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI) executed in 253ms
+2024-10-01 20:44:34.099 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.Order, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 20:44:34.139 +05:00 [INF] Executed action BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI) in 295.9721ms
+2024-10-01 20:44:34.146 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI)'
+2024-10-01 20:44:34.148 +05:00 [INF] Outgoing Response: 200
+2024-10-01 20:44:34.150 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Order/GetAllOrders - 200 5319 application/json; charset=utf-8 384.2063ms
+2024-10-01 20:56:53.755 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Order - null null
+2024-10-01 20:56:53.759 +05:00 [INF] Incoming Request: GET /api/Order
+2024-10-01 20:56:53.762 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.OrderController.GetOrders (BookstoreAPI)'
+2024-10-01 20:56:53.767 +05:00 [INF] Route matched with {action = "GetOrders", controller = "Order"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetOrders() on controller BookstoreAPI.Controllers.OrderController (BookstoreAPI).
+2024-10-01 20:56:53.818 +05:00 [INF] Executed DbCommand (6ms) [Parameters=[@__customerId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[Id], [o].[CancellationReason], [o].[CustomerId], [o].[CustomerId1], [o].[OrderDate], [o].[ReturnReason], [o].[Status], [t].[OrderId], [t].[BookId], [t].[Quantity], [t].[UnitPrice], [t].[Id], [t].[AuthorId], [t].[ISBN], [t].[Price], [t].[StockQuantity], [t].[Title]
+FROM [Orders] AS [o]
+LEFT JOIN (
+    SELECT [o0].[OrderId], [o0].[BookId], [o0].[Quantity], [o0].[UnitPrice], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+    FROM [OrderDetails] AS [o0]
+    INNER JOIN [Books] AS [b] ON [o0].[BookId] = [b].[Id]
+) AS [t] ON [o].[Id] = [t].[OrderId]
+WHERE [o].[CustomerId] = @__customerId_0
+ORDER BY [o].[Id], [t].[OrderId], [t].[BookId]
+2024-10-01 20:56:53.829 +05:00 [INF] Action BookstoreAPI.Controllers.OrderController.GetOrders (BookstoreAPI) executed in 45ms
+2024-10-01 20:56:53.830 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.OrderReadDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 20:56:53.838 +05:00 [INF] Executed action BookstoreAPI.Controllers.OrderController.GetOrders (BookstoreAPI) in 55.7381ms
+2024-10-01 20:56:53.841 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.OrderController.GetOrders (BookstoreAPI)'
+2024-10-01 20:56:53.843 +05:00 [INF] Outgoing Response: 200
+2024-10-01 20:56:53.845 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Order - 200 470 application/json; charset=utf-8 89.1986ms
+2024-10-01 21:13:25.228 +05:00 [INF] Application is shutting down...
+2024-10-01 21:13:32.901 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 21:13:33.518 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 21:13:33.554 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 21:13:33.557 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 21:13:34.215 +05:00 [INF] Executed DbCommand (36ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 21:13:34.318 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 21:13:34.472 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 21:13:34.475 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 21:13:34.477 +05:00 [INF] Hosting environment: Development
+2024-10-01 21:13:34.478 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 21:14:43.126 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 21:14:43.243 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 118.2783ms
+2024-10-01 21:14:43.463 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 21:14:43.593 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 130.0319ms
+2024-10-01 21:15:26.340 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Order/GetAllOrders - null null
+2024-10-01 21:15:26.353 +05:00 [INF] Incoming Request: GET /api/Order/GetAllOrders
+2024-10-01 21:15:26.453 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-01 21:15:26.456 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI)'
+2024-10-01 21:15:26.471 +05:00 [INF] Route matched with {action = "GetAllOrders", controller = "Order"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllOrders() on controller BookstoreAPI.Controllers.OrderController (BookstoreAPI).
+2024-10-01 21:15:26.685 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[Id], [o].[CancellationReason], [o].[CustomerId], [o].[CustomerId1], [o].[OrderDate], [o].[ReturnReason], [o].[Status], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [t].[OrderId], [t].[BookId], [t].[Quantity], [t].[UnitPrice], [t].[Id], [t].[AuthorId], [t].[ISBN], [t].[Price], [t].[StockQuantity], [t].[Title]
+FROM [Orders] AS [o]
+INNER JOIN [AspNetUsers] AS [a] ON [o].[CustomerId] = [a].[Id]
+LEFT JOIN (
+    SELECT [o0].[OrderId], [o0].[BookId], [o0].[Quantity], [o0].[UnitPrice], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+    FROM [OrderDetails] AS [o0]
+    INNER JOIN [Books] AS [b] ON [o0].[BookId] = [b].[Id]
+) AS [t] ON [o].[Id] = [t].[OrderId]
+ORDER BY [o].[Id], [a].[Id], [t].[OrderId], [t].[BookId]
+2024-10-01 21:15:26.718 +05:00 [INF] Action BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI) executed in 241ms
+2024-10-01 21:15:26.726 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.OrderDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 21:15:26.843 +05:00 [INF] Executed action BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI) in 364.0453ms
+2024-10-01 21:15:26.845 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.OrderController.GetAllOrders (BookstoreAPI)'
+2024-10-01 21:15:26.847 +05:00 [INF] Outgoing Response: 200
+2024-10-01 21:15:26.856 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Order/GetAllOrders - 200 681 application/json; charset=utf-8 514.9786ms
+2024-10-01 22:31:30.089 +05:00 [INF] Application is shutting down...
+2024-10-01 22:31:48.202 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 22:31:48.295 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:31:48.297 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:31:48.979 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 22:31:48.987 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:31:48.990 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:32:21.046 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 22:32:21.146 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:32:21.149 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:32:21.646 +05:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-01 22:32:21.680 +05:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-01 22:32:21.684 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-01 22:32:21.689 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-01 22:32:21.716 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-10-01 22:32:21.739 +05:00 [INF] Applying migration '20241001173202_AddCartAndWishlistEntities'.
+2024-10-01 22:32:21.906 +05:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] int NOT NULL IDENTITY,
+    [CustomerId] nvarchar(450) NOT NULL,
+    [BookId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Carts_AspNetUsers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Carts_Books_BookId] FOREIGN KEY ([BookId]) REFERENCES [Books] ([Id]) ON DELETE CASCADE
+);
+2024-10-01 22:32:21.914 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Wishlists] (
+    [Id] int NOT NULL IDENTITY,
+    [CustomerId] nvarchar(450) NOT NULL,
+    [BookId] int NOT NULL,
+    CONSTRAINT [PK_Wishlists] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Wishlists_AspNetUsers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Wishlists_Books_BookId] FOREIGN KEY ([BookId]) REFERENCES [Books] ([Id]) ON DELETE CASCADE
+);
+2024-10-01 22:32:21.920 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Carts_BookId] ON [Carts] ([BookId]);
+2024-10-01 22:32:21.925 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Carts_CustomerId] ON [Carts] ([CustomerId]);
+2024-10-01 22:32:21.929 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Wishlists_BookId] ON [Wishlists] ([BookId]);
+2024-10-01 22:32:21.933 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Wishlists_CustomerId] ON [Wishlists] ([CustomerId]);
+2024-10-01 22:32:21.941 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20241001173202_AddCartAndWishlistEntities', N'8.0.8');
+2024-10-01 22:32:56.162 +05:00 [INF] User profile is available. Using 'C:\Users\Abubakar Sabir\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-01 22:32:57.009 +05:00 [WRN] The foreign key property 'Order.CustomerId1' was created in shadow state because a conflicting property with the simple name 'CustomerId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2024-10-01 22:32:57.059 +05:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Book'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:32:57.062 +05:00 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-10-01 22:32:57.822 +05:00 [INF] Executed DbCommand (50ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 22:32:57.909 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-10-01 22:32:58.071 +05:00 [INF] Now listening on: http://localhost:5296
+2024-10-01 22:32:58.074 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-01 22:32:58.075 +05:00 [INF] Hosting environment: Development
+2024-10-01 22:32:58.078 +05:00 [INF] Content root path: E:\House of Technology Office\Bookstore API project learning\BookstoreAPI
+2024-10-01 22:33:03.429 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-10-01 22:33:03.561 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 133.586ms
+2024-10-01 22:33:03.795 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-10-01 22:33:03.930 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 134.2787ms
+2024-10-01 22:34:03.531 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Wishlist - application/json-patch+json 17
+2024-10-01 22:34:03.821 +05:00 [INF] Incoming Request: POST /api/Wishlist
+2024-10-01 22:34:03.953 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '10/1/2024 5:11:07 PM', Current time (UTC): '10/1/2024 5:34:03 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2024-10-01 22:34:03.972 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '10/1/2024 5:11:07 PM', Current time (UTC): '10/1/2024 5:34:03 PM'.
+2024-10-01 22:34:03.980 +05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-10-01 22:34:03.993 +05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-10-01 22:34:03.995 +05:00 [INF] Outgoing Response: 401
+2024-10-01 22:34:03.998 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Wishlist - 401 0 null 466.1331ms
+2024-10-01 22:35:13.875 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Customer/login - application/json-patch+json 63
+2024-10-01 22:35:13.889 +05:00 [INF] Incoming Request: POST /api/Customer/login
+2024-10-01 22:35:13.899 +05:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '10/1/2024 5:11:07 PM', Current time (UTC): '10/1/2024 5:35:13 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2024-10-01 22:35:13.932 +05:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '10/1/2024 5:11:07 PM', Current time (UTC): '10/1/2024 5:35:13 PM'.
+2024-10-01 22:35:13.942 +05:00 [WRN] Failed to determine the https port for redirect.
+2024-10-01 22:35:13.946 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-01 22:35:13.985 +05:00 [INF] Route matched with {action = "Login", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookstoreAPI.Models.DTOs.LoginDTO) on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-01 22:35:14.465 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-10-01 22:35:14.714 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-10-01 22:35:14.751 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-01 22:35:14.776 +05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2024-10-01 22:35:14.781 +05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-10-01 22:35:14.813 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) executed in 436ms
+2024-10-01 22:35:14.817 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:35:14.873 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI) in 871.7236ms
+2024-10-01 22:35:14.877 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.Login (BookstoreAPI)'
+2024-10-01 22:35:14.881 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:35:14.894 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Customer/login - 200 445 application/json; charset=utf-8 1019.6826ms
+2024-10-01 22:35:47.751 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Customer/profile - null null
+2024-10-01 22:35:47.757 +05:00 [INF] Incoming Request: GET /api/Customer/profile
+2024-10-01 22:35:47.788 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI)'
+2024-10-01 22:35:47.795 +05:00 [INF] Route matched with {action = "GetProfile", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProfile() on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-01 22:35:47.862 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-10-01 22:35:47.867 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI) executed in 56ms
+2024-10-01 22:35:47.869 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:35:47.873 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI) in 72.379ms
+2024-10-01 22:35:47.875 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI)'
+2024-10-01 22:35:47.876 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:35:47.878 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Customer/profile - 200 68 application/json; charset=utf-8 127.0985ms
+2024-10-01 22:36:07.385 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Wishlist - application/json-patch+json 17
+2024-10-01 22:36:07.391 +05:00 [INF] Incoming Request: POST /api/Wishlist
+2024-10-01 22:36:07.403 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI)'
+2024-10-01 22:36:07.410 +05:00 [INF] Route matched with {action = "AddToWishlist", controller = "Wishlist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddToWishlist(BookstoreAPI.Models.DTOs.WishlistCreateDTO) on controller BookstoreAPI.Controllers.WishlistController (BookstoreAPI).
+2024-10-01 22:36:07.502 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[Bio], [a].[Name]
+FROM [Books] AS [b]
+INNER JOIN [Authors] AS [a] ON [b].[AuthorId] = [a].[Id]
+WHERE [b].[Id] = @__id_0
+2024-10-01 22:36:07.730 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Wishlists] ([BookId], [CustomerId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1);
+2024-10-01 22:36:07.760 +05:00 [INF] Action BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI) executed in 291ms
+2024-10-01 22:36:07.762 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:36:07.766 +05:00 [INF] Executed action BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI) in 352.9424ms
+2024-10-01 22:36:07.768 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI)'
+2024-10-01 22:36:07.769 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:36:07.771 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Wishlist - 200 49 application/json; charset=utf-8 385.4272ms
+2024-10-01 22:36:16.979 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Wishlist - null null
+2024-10-01 22:36:16.983 +05:00 [INF] Incoming Request: GET /api/Wishlist
+2024-10-01 22:36:16.985 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI)'
+2024-10-01 22:36:17.009 +05:00 [INF] Route matched with {action = "GetCustomerWishlist", controller = "Wishlist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerWishlist() on controller BookstoreAPI.Controllers.WishlistController (BookstoreAPI).
+2024-10-01 22:36:17.056 +05:00 [INF] Executed DbCommand (13ms) [Parameters=[@__customerId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[BookId], [w].[CustomerId], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Wishlists] AS [w]
+INNER JOIN [Books] AS [b] ON [w].[BookId] = [b].[Id]
+WHERE [w].[CustomerId] = @__customerId_0
+2024-10-01 22:36:17.062 +05:00 [INF] Action BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI) executed in 48ms
+2024-10-01 22:36:17.066 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.WishlistDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 22:36:17.080 +05:00 [INF] Executed action BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI) in 67.3011ms
+2024-10-01 22:36:17.090 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI)'
+2024-10-01 22:36:17.093 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:36:17.096 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Wishlist - 200 65 application/json; charset=utf-8 117.1335ms
+2024-10-01 22:38:53.879 +05:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5296/api/Wishlist/1 - null null
+2024-10-01 22:38:53.884 +05:00 [INF] Incoming Request: DELETE /api/Wishlist/1
+2024-10-01 22:38:53.888 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.WishlistController.RemoveFromWishlist (BookstoreAPI)'
+2024-10-01 22:38:53.907 +05:00 [INF] Route matched with {action = "RemoveFromWishlist", controller = "Wishlist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RemoveFromWishlist(Int32) on controller BookstoreAPI.Controllers.WishlistController (BookstoreAPI).
+2024-10-01 22:38:53.936 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__wishlistId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[Id], [w].[BookId], [w].[CustomerId], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Wishlists] AS [w]
+INNER JOIN [Books] AS [b] ON [w].[BookId] = [b].[Id]
+WHERE [w].[Id] = @__wishlistId_0
+2024-10-01 22:38:53.967 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Wishlists]
+OUTPUT 1
+WHERE [Id] = @p0;
+2024-10-01 22:38:53.979 +05:00 [INF] Action BookstoreAPI.Controllers.WishlistController.RemoveFromWishlist (BookstoreAPI) executed in 64ms
+2024-10-01 22:38:53.980 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:38:53.984 +05:00 [INF] Executed action BookstoreAPI.Controllers.WishlistController.RemoveFromWishlist (BookstoreAPI) in 73.306ms
+2024-10-01 22:38:53.989 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.WishlistController.RemoveFromWishlist (BookstoreAPI)'
+2024-10-01 22:38:53.993 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:38:53.995 +05:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5296/api/Wishlist/1 - 200 53 application/json; charset=utf-8 116.5167ms
+2024-10-01 22:39:00.032 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Wishlist - null null
+2024-10-01 22:39:00.035 +05:00 [INF] Incoming Request: GET /api/Wishlist
+2024-10-01 22:39:00.037 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI)'
+2024-10-01 22:39:00.038 +05:00 [INF] Route matched with {action = "GetCustomerWishlist", controller = "Wishlist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerWishlist() on controller BookstoreAPI.Controllers.WishlistController (BookstoreAPI).
+2024-10-01 22:39:00.056 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__customerId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[BookId], [w].[CustomerId], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Wishlists] AS [w]
+INNER JOIN [Books] AS [b] ON [w].[BookId] = [b].[Id]
+WHERE [w].[CustomerId] = @__customerId_0
+2024-10-01 22:39:00.067 +05:00 [INF] Action BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI) executed in 15ms
+2024-10-01 22:39:00.068 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.WishlistDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 22:39:00.070 +05:00 [INF] Executed action BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI) in 19.2181ms
+2024-10-01 22:39:00.074 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI)'
+2024-10-01 22:39:00.086 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:39:00.087 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Wishlist - 200 2 application/json; charset=utf-8 55.8543ms
+2024-10-01 22:39:15.836 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Wishlist - application/json-patch+json 17
+2024-10-01 22:39:15.839 +05:00 [INF] Incoming Request: POST /api/Wishlist
+2024-10-01 22:39:15.840 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI)'
+2024-10-01 22:39:15.842 +05:00 [INF] Route matched with {action = "AddToWishlist", controller = "Wishlist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddToWishlist(BookstoreAPI.Models.DTOs.WishlistCreateDTO) on controller BookstoreAPI.Controllers.WishlistController (BookstoreAPI).
+2024-10-01 22:39:15.860 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[Bio], [a].[Name]
+FROM [Books] AS [b]
+INNER JOIN [Authors] AS [a] ON [b].[AuthorId] = [a].[Id]
+WHERE [b].[Id] = @__id_0
+2024-10-01 22:39:15.888 +05:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Wishlists] ([BookId], [CustomerId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1);
+2024-10-01 22:39:15.896 +05:00 [INF] Action BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI) executed in 42ms
+2024-10-01 22:39:15.899 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:39:15.901 +05:00 [INF] Executed action BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI) in 49.2115ms
+2024-10-01 22:39:15.903 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.WishlistController.AddToWishlist (BookstoreAPI)'
+2024-10-01 22:39:15.904 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:39:15.911 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Wishlist - 200 49 application/json; charset=utf-8 75.4578ms
+2024-10-01 22:39:27.639 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Wishlist - null null
+2024-10-01 22:39:27.642 +05:00 [INF] Incoming Request: GET /api/Wishlist
+2024-10-01 22:39:27.644 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI)'
+2024-10-01 22:39:27.649 +05:00 [INF] Route matched with {action = "GetCustomerWishlist", controller = "Wishlist"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerWishlist() on controller BookstoreAPI.Controllers.WishlistController (BookstoreAPI).
+2024-10-01 22:39:27.664 +05:00 [INF] Executed DbCommand (5ms) [Parameters=[@__customerId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[Id], [w].[BookId], [w].[CustomerId], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Wishlists] AS [w]
+INNER JOIN [Books] AS [b] ON [w].[BookId] = [b].[Id]
+WHERE [w].[CustomerId] = @__customerId_0
+2024-10-01 22:39:27.674 +05:00 [INF] Action BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI) executed in 15ms
+2024-10-01 22:39:27.676 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.WishlistDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 22:39:27.701 +05:00 [INF] Executed action BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI) in 42.9902ms
+2024-10-01 22:39:27.735 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.WishlistController.GetCustomerWishlist (BookstoreAPI)'
+2024-10-01 22:39:27.750 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:39:27.751 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Wishlist - 200 71 application/json; charset=utf-8 112.1264ms
+2024-10-01 22:51:19.354 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Customer/profile - null null
+2024-10-01 22:51:19.357 +05:00 [INF] Incoming Request: GET /api/Customer/profile
+2024-10-01 22:51:19.359 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI)'
+2024-10-01 22:51:19.364 +05:00 [INF] Route matched with {action = "GetProfile", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetProfile() on controller BookstoreAPI.Controllers.CustomerController (BookstoreAPI).
+2024-10-01 22:51:19.411 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-10-01 22:51:19.414 +05:00 [INF] Action BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI) executed in 27ms
+2024-10-01 22:51:19.415 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:51:19.417 +05:00 [INF] Executed action BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI) in 49.9315ms
+2024-10-01 22:51:19.419 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CustomerController.GetProfile (BookstoreAPI)'
+2024-10-01 22:51:19.421 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:51:19.425 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Customer/profile - 200 68 application/json; charset=utf-8 71.8982ms
+2024-10-01 22:52:33.737 +05:00 [INF] Request starting HTTP/1.1 POST http://localhost:5296/api/Cart - application/json-patch+json 34
+2024-10-01 22:52:33.742 +05:00 [INF] Incoming Request: POST /api/Cart
+2024-10-01 22:52:33.743 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CartController.AddToCart (BookstoreAPI)'
+2024-10-01 22:52:34.077 +05:00 [INF] Route matched with {action = "AddToCart", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddToCart(BookstoreAPI.Models.DTOs.CartCreateDTO) on controller BookstoreAPI.Controllers.CartController (BookstoreAPI).
+2024-10-01 22:52:34.107 +05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title], [a].[Id], [a].[Bio], [a].[Name]
+FROM [Books] AS [b]
+INNER JOIN [Authors] AS [a] ON [b].[AuthorId] = [a].[Id]
+WHERE [b].[Id] = @__id_0
+2024-10-01 22:52:34.130 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__customerId_0='?' (Size = 450), @__bookId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[BookId], [c].[CustomerId], [c].[Quantity]
+FROM [Carts] AS [c]
+WHERE [c].[CustomerId] = @__customerId_0 AND [c].[BookId] = @__bookId_1
+2024-10-01 22:52:34.164 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 450), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Carts] ([BookId], [CustomerId], [Quantity])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2);
+2024-10-01 22:52:34.173 +05:00 [INF] Action BookstoreAPI.Controllers.CartController.AddToCart (BookstoreAPI) executed in 78ms
+2024-10-01 22:52:34.174 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:52:34.176 +05:00 [INF] Executed action BookstoreAPI.Controllers.CartController.AddToCart (BookstoreAPI) in 91.7226ms
+2024-10-01 22:52:34.178 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CartController.AddToCart (BookstoreAPI)'
+2024-10-01 22:52:34.181 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:52:34.183 +05:00 [INF] Request finished HTTP/1.1 POST http://localhost:5296/api/Cart - 200 45 application/json; charset=utf-8 445.3108ms
+2024-10-01 22:52:43.941 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Cart - null null
+2024-10-01 22:52:43.944 +05:00 [INF] Incoming Request: GET /api/Cart
+2024-10-01 22:52:43.945 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI)'
+2024-10-01 22:52:43.954 +05:00 [INF] Route matched with {action = "GetCustomerCart", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerCart() on controller BookstoreAPI.Controllers.CartController (BookstoreAPI).
+2024-10-01 22:52:44.106 +05:00 [INF] Executed DbCommand (120ms) [Parameters=[@__customerId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[BookId], [c].[CustomerId], [c].[Quantity], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Carts] AS [c]
+INNER JOIN [Books] AS [b] ON [c].[BookId] = [b].[Id]
+WHERE [c].[CustomerId] = @__customerId_0
+2024-10-01 22:52:44.114 +05:00 [INF] Action BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI) executed in 154ms
+2024-10-01 22:52:44.134 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.CartDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 22:52:44.138 +05:00 [INF] Executed action BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI) in 179.6982ms
+2024-10-01 22:52:44.144 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI)'
+2024-10-01 22:52:44.145 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:52:44.147 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Cart - 200 83 application/json; charset=utf-8 206.5246ms
+2024-10-01 22:53:04.486 +05:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5296/api/Cart/1 - application/json-patch+json 19
+2024-10-01 22:53:04.490 +05:00 [INF] Incoming Request: PUT /api/Cart/1
+2024-10-01 22:53:04.491 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CartController.UpdateCart (BookstoreAPI)'
+2024-10-01 22:53:04.513 +05:00 [INF] Route matched with {action = "UpdateCart", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateCart(Int32, BookstoreAPI.Models.DTOs.CartUpdateDTO) on controller BookstoreAPI.Controllers.CartController (BookstoreAPI).
+2024-10-01 22:53:04.544 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__cartId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[BookId], [c].[CustomerId], [c].[Quantity], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Carts] AS [c]
+INNER JOIN [Books] AS [b] ON [c].[BookId] = [b].[Id]
+WHERE [c].[Id] = @__cartId_0
+2024-10-01 22:53:04.558 +05:00 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Size = 450), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Carts] SET [BookId] = @p0, [CustomerId] = @p1, [Quantity] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;
+2024-10-01 22:53:04.562 +05:00 [INF] Action BookstoreAPI.Controllers.CartController.UpdateCart (BookstoreAPI) executed in 33ms
+2024-10-01 22:53:04.563 +05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-10-01 22:53:04.565 +05:00 [INF] Executed action BookstoreAPI.Controllers.CartController.UpdateCart (BookstoreAPI) in 47.0038ms
+2024-10-01 22:53:04.570 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CartController.UpdateCart (BookstoreAPI)'
+2024-10-01 22:53:04.572 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:53:04.574 +05:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5296/api/Cart/1 - 200 39 application/json; charset=utf-8 87.3927ms
+2024-10-01 22:53:12.925 +05:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/api/Cart - null null
+2024-10-01 22:53:12.928 +05:00 [INF] Incoming Request: GET /api/Cart
+2024-10-01 22:53:12.930 +05:00 [INF] Executing endpoint 'BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI)'
+2024-10-01 22:53:12.931 +05:00 [INF] Route matched with {action = "GetCustomerCart", controller = "Cart"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomerCart() on controller BookstoreAPI.Controllers.CartController (BookstoreAPI).
+2024-10-01 22:53:12.946 +05:00 [INF] Executed DbCommand (1ms) [Parameters=[@__customerId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[BookId], [c].[CustomerId], [c].[Quantity], [b].[Id], [b].[AuthorId], [b].[ISBN], [b].[Price], [b].[StockQuantity], [b].[Title]
+FROM [Carts] AS [c]
+INNER JOIN [Books] AS [b] ON [c].[BookId] = [b].[Id]
+WHERE [c].[CustomerId] = @__customerId_0
+2024-10-01 22:53:12.954 +05:00 [INF] Action BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI) executed in 10ms
+2024-10-01 22:53:12.955 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BookstoreAPI.Models.DTOs.CartDTO, BookstoreAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-10-01 22:53:12.958 +05:00 [INF] Executed action BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI) in 14.8647ms
+2024-10-01 22:53:12.971 +05:00 [INF] Executed endpoint 'BookstoreAPI.Controllers.CartController.GetCustomerCart (BookstoreAPI)'
+2024-10-01 22:53:12.983 +05:00 [INF] Outgoing Response: 200
+2024-10-01 22:53:12.986 +05:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/api/Cart - 200 83 application/json; charset=utf-8 60.9996ms
